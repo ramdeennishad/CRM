@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <th:block th:replace = "~{/common/head_script/head::head}"></th:block>
+    <title>Compose email</title>
+</head>
+<body>
+<!--Navbar fragment-->
+<th:block th:replace = "~{/common/navbar/navbar::nav-bar('contacts')}"></th:block>
+<div class="container my-4" style="margin-bottom:100px!important;">
+    <h3>Email</h3>
+    <div class="card p-4 m-2">
+        <form method="POST" th:action="@{/email/send}" th:object="${email}">
+            <div class="mb-3">
+                <label for="sendTo" class="form-label">Recipient email</label>
+                <input type="email" class="form-control" readonly id="sendTo" th:field="*{to}" aria-describedby="sendToHelp">
+                <p class="text-danger" th:if="${#fields.hasErrors('to')}" th:errors="*{to}"></p>
+            </div>
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject" th:field="*{subject}" aria-describedby="subjectHelp">
+                <p class="text-danger" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p>
+
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea type="text" class="form-control" rows="5" id="message" th:field="*{body}" aria-describedby="emailHelp"></textarea>
+                <p class="text-danger" th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+</div>
+
+<!--footer with script fragment-->
+<th:block th:replace = "~{/common/footer/footer.html::footer-script}"></th:block>
+</body>
+</html>

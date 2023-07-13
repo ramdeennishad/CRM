@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Lead Info</title>
+    <th:block th:replace = "~{common/head_script/head::head}"></th:block>
+</head>
+<body>
+<!--Navbar fragment-->
+<th:block th:replace = "~{common/navbar/navbar::nav-bar('lead')}"></th:block>
+
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="card text-dark bg-light my-3" style="max-width: 100%;min-width: 100%;">
+        <div class="card-header"><h5>Lead Info</h5></div>
+        <div class="card-body d-flex justify-content-center" style="min-height: 150px;">
+            <div class="info d-flex flex-column flex-grow-1">
+                <p class="card-text">First name</p>
+                <p class="card-text">Last name</p>
+                <p class="card-text">E-mail</p>
+                <p class="card-text">Phone</p>
+                <p class="card-text">Source</p>
+            </div>
+            <div class="mx-4" style="width:1px;background:#d2d3d4"></div>
+            <div class="info-val d-flex flex-column flex-grow-1" th:object = "${lead}">
+                <p class="card-text" th:text = "*{firstName}">First name</p>
+                <p class="card-text" th:text = "*{lastName}">Last name</p>
+                <p class="card-text" th:text = "*{email}">Email</p>
+                <p class="card-text" th:text = "*{mobile}">mobile</p>
+                <p class="card-text" th:text = "*{source}">source</p>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <a th:href="@{/lead/convert/{id}(id=${lead.id})}" class="btn btn-primary">Convert to Contact</a>
+            <a th:href="@{/email/compose-email(email=${lead.email})}" class="btn btn-success">Send E-Mail</a>
+            <a th:href="@{/lead/delete/{id}(id=${lead.id})}" class="btn btn-danger">Delete Lead</a>
+        </div>
+    </div>
+</div>
+
+<!--footer fragment-->
+<th:block th:replace = "~{common/footer/footer::footer-script}"></th:block>
+</body>
+</html>

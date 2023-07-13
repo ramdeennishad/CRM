@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <title>Contact List</title>
+    <th:block th:replace="~{/common/head_script/head::head}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{common/navbar/navbar::nav-bar('contacts')}"></th:block>
+<div class="container table-responsive" style="margin-bottom:100px;">
+    <h3>All Contacts</h3>
+    <table class="table table-success table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">mobile</th>
+            <th scope="col">source</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contact,state:${contacts}">
+            <th scope="row" th:text="${state.count}">sno</th>
+            <td th:text="${contact.firstName}">col 1</td>
+            <td th:text="${contact.lastName}">col 2</td>
+            <td th:text="${contact.email}">col 3</td>
+            <td th:text="${contact.mobile}">col 4</td>
+            <td th:text="${contact.source}">col 5</td>
+            <td><a th:href="@{/contact/{id}(id=${contact.id})}" class="btn btn-sm btn-primary">View</a></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<!--footer with script fragment-->
+<th:block th:replace="~{common/footer/footer::footer-script}"></th:block>
+
+</body>
+</html>

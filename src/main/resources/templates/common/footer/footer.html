@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>footer</title>
+</head>
+<body>
+
+<footer class="text-center text-lg-start bg-light text-muted" style="position: fixed;bottom: 0;width: 100%;" th:fragment = "footer-script">
+    <div class="text-center p-4 bg-primary text-light">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" th:href="@{'https://www.site-name.domain'}" th:text="#{app.name}"></a>
+    </div>
+<!--   Required Scripts    -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</footer>
+
+</body>
+</html>

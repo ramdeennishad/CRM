@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <th:block th:replace = "~{/common/head_script/head::head}"></th:block>
+    <title>Create Leads</title>
+</head>
+<body>
+<!--Navbar fragment-->
+<th:block th:replace = "~{/common/navbar/navbar::nav-bar('create_lead')}"></th:block>
+<div class="container my-4" style="margin-bottom:100px!important;">
+    <h3>Create Lead</h3>
+    <div class="card p-4 m-2">
+        <form method="POST" th:action="@{/create-lead}" th:object="${lead}">
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" th:field="*{firstName}" aria-describedby="firstNameHelp">
+                <p class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" th:field="*{lastName}" aria-describedby="lastNameHelp">
+                <p class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}" aria-describedby="emailHelp">
+                <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            </div>
+            <div class="mb-3">
+                <label for="mobile" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="mobile" th:field="*{mobile}" aria-describedby="phoneHelp">
+                <p class="text-danger" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p>
+            </div>
+
+            <div class="mb-3">
+                <label for="source" class="form-label">Source</label>
+                <select class="form-select" th:field="*{source}" id = "source" aria-label="Lead source">
+                    <option value = "" selected>Select source</option>
+                    <option th:each="source:${sources}" th:value="${source}" th:text="${source}">source name</option>
+                </select>
+                <p class="text-danger" th:if="${#fields.hasErrors('source')}" th:errors="*{source}"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Lead</button>
+        </form>
+    </div>
+</div>
+
+<!--footer with script fragment-->
+<th:block th:replace = "~{/common/footer/footer.html::footer-script}"></th:block>
+</body>
+</html>
